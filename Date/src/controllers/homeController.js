@@ -44,6 +44,21 @@ const homeController = {
         } catch(err) {
             return res.status(500).json(err);
         }
+    },
+    getImage: async (req,res) => {
+        try {
+            const loggedInUser = await User.findById(req.user.id);
+            const imgUser = await User.find({
+                $and: [
+                    { _id: { $nin: loggedInUser.likes.concat(loggedInUser.dislikes, req.user.id) } },
+                    { gender: { $ne: loggedInUser.gender } }
+                ]
+            }).select("image");
+            return res.status(200).json(imgUser);
+        } catch(err) {
+            console.log(err);
+            return res.status(500).json(err);
+        }
     }
 }
 

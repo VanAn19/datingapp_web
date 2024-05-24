@@ -27,7 +27,9 @@ const app = express();
 app.use(bodyParser.json({limit:"50mb"}));
 app.use(methodOverride('_method'));
 app.use(cors());
-app.use(helmet());
+app.use(helmet({
+    crossOriginResourcePolicy: false,
+}));
 app.use(cookieParser());
 // app.use(express.json());
 app.use(morgan('common'));
