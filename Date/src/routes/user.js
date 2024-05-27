@@ -9,5 +9,6 @@ router.post('/login', userController.loginUser);
 router.post('/refresh', userController.requestRefreshToken);
 router.post('/logout', middlewareController.verifyToken, userController.logOut);
 router.post('/:id', middlewareController.verifyToken, upload.array('image'), userController.profileUser);
+router.get('/find/:id', userController.getUser);
 
 module.exports = router;

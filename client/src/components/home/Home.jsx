@@ -12,9 +12,10 @@ export const Home = () => {
   const [users, setUsers] = useState("");
   const [currentUserIndex, setCurrentUserIndex] = useState(0);
   const [noUsersLeft, setNoUsersLeft] = useState(false);
-  const [image, setImage] = useState({ preview: '', raw: '' })
+  // const [image, setImage] = useState({ preview: '', raw: '' })
   const [allImages, setAllImages] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showMatchedAlert, setShowMatchedAlert] = useState(false);
   const { user, token } = useSelector((state) => state.auth);
 
   const topics = ["Trang chủ", "Hồ sơ", "Tin nhắn", "Đăng xuất"];
@@ -66,6 +67,12 @@ export const Home = () => {
       });
       const data = await res.json();
       // console.log(data);
+      if (data.matched) {
+        setShowMatchedAlert(true); 
+        setTimeout(() => {
+          setShowMatchedAlert(false); 
+        }, 3000);
+      }
       moveToNextUser();
     } catch (error) {
       console.error(error);
@@ -125,6 +132,11 @@ export const Home = () => {
       <h1 className={classes.bumble}>
           <img className={classes.logo} src={Logo} alt="" />
       </h1>
+      {showMatchedAlert && (
+        <div className={classes.matchedAlert}>
+          <p>It's a match!</p>
+        </div>
+      )}
       {!noUsersLeft && currentUser && (
         <div className={classes.BoxBumble}>
           <div className={classes.img}>

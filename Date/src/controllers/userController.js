@@ -189,6 +189,14 @@ const userController = {
             console.log(err);
             return res.status(500).json(err);
         }
+    },
+    getUser: async (req,res) => {
+        try {
+            const user = await User.findOne({ _id: req.params.id })
+            return res.status(200).json(user);
+        } catch (err) {
+            return res.status(500).json(err);
+        }
     }
 }
 
