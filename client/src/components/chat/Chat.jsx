@@ -98,6 +98,7 @@ const Chat = () => {
         const otherUserId = lastConversationClicked?.members?.find(member => member !== user._id)
         const res = await fetch(`http://localhost:4000/v1/user/find/${otherUserId}`);
         const data = await res.json();
+        data.image = data.image.substring(4);
         setOtherUser(prev => data)
       } catch (error) {
         console.error(error);
@@ -146,7 +147,7 @@ const Chat = () => {
           { lastConversationClicked ? 
             <>
               <div className={classes.otherUserData}>
-                <img src={Woman} className={classes.otherUserImg} />
+                <img src={`http://localhost:4000/${otherUser.image}`} className={classes.otherUserImg} />
                 <h4 className={classes.personUserName}>{otherUser.name}</h4>
               </div>
               <div className={classes.message}>

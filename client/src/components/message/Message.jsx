@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Woman from '../../assets/Woman.jpg'
 import classes from './message.module.css'
+import { useSelector } from 'react-redux'
 import { format } from 'timeago.js'
 
-const Message = ({ messages, own, message}) => {
+const Message = ({ messages, own, message }) => {
 
     const ref = useRef();
 

@@ -11,6 +11,7 @@ const Conversation = ({ conversation, currentUser }) => {
       const otherUserId = conversation.members.find(member => member !== currentUser._id)
       const res = await fetch(`http://localhost:4000/v1/user/find/${otherUserId}`);
       const data = await res.json();
+      data.image = data.image.substring(4);
       setOtherUser(prev => data)
     }
     conversation && fetchOtherUser()
@@ -19,7 +20,7 @@ const Conversation = ({ conversation, currentUser }) => {
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
-        <img src={Woman} className={classes.otherUserImg} />
+        <img src={`http://localhost:4000/${otherUser.image}`} className={classes.otherUserImg} />
         <div className={classes.metaData}>
           <div className={classes.otherUsername}>{otherUser.name}</div>
           <div className={classes.lastMsgConvo}>

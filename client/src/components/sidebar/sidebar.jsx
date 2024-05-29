@@ -27,10 +27,9 @@ const SideBar = ({ menu }) => {
         },
         method: "POST"
       });
-      const data = await res.json()
-      console.log(data);
-      // dispatch(logout(data))
-      // navigate("/login")
+      localStorage.removeItem('auth');
+      dispatch(logout())
+      navigate("/login")
     } catch (error) {
       setError(prev => true)
       setTimeout(() => {
@@ -61,7 +60,7 @@ const SideBar = ({ menu }) => {
           <MessageOutlined /> Tin nhắn
         </Link>
         <br /> 
-        <Link className={classes.x} to={"/login"}>
+        <Link className={classes.x} onClick={handleLogout}>
           <LogoutOutlined /> Đăng xuất
         </Link>
         <br /> 

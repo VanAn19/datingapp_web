@@ -142,12 +142,12 @@ export const Home = () => {
           <div className={classes.img}>
             {allImages && allImages.map((data) => {
               if (data._id === currentUser._id) {
-                const imagePath = data.image.replace('src', '');
-                console.log(imagePath);
+                const imagePath = data.image.substring(4);
+                // console.log(imagePath);
                 return (
                   <img
                     className={classes.avatar}
-                    src={`http://localhost:4000${imagePath}`}
+                    src={`http://localhost:4000/${imagePath}`}
                     alt=""
                   />
                 );
