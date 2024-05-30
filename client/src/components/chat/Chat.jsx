@@ -98,7 +98,6 @@ const Chat = () => {
         const otherUserId = lastConversationClicked?.members?.find(member => member !== user._id)
         const res = await fetch(`http://localhost:4000/v1/user/find/${otherUserId}`);
         const data = await res.json();
-        data.image = data.image.substring(4);
         setOtherUser(prev => data)
       } catch (error) {
         console.error(error);

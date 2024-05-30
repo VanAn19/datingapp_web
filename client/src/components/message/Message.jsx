@@ -6,6 +6,8 @@ import { format } from 'timeago.js'
 
 const Message = ({ messages, own, message }) => {
 
+    const { user } = useSelector((state) => state.auth);
+
     const ref = useRef();
 
     useEffect(() => {
@@ -32,7 +34,7 @@ const Message = ({ messages, own, message }) => {
                         <div className={classes.text}>{message.messageText}</div>
                         <span className={classes.timeAgo}>{format(message.createdAt)}</span>
                     </div>
-                    <img src={Woman} className={classes.personImg} />
+                    <img src={`http://localhost:4000/${user.image}`} className={classes.personImg} />
                 </div>
             </div>
         }

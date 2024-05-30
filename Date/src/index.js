@@ -33,7 +33,7 @@ app.use(helmet({
 app.use(cookieParser());
 // app.use(express.json());
 app.use(morgan('common'));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/src/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ROUTES
 app.use('/api/auth', authRouter);

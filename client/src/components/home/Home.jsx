@@ -116,7 +116,6 @@ export const Home = () => {
     // console.log(res);
     setAllImages(res.data);
   };
-  console.log(allImages);
 
   const goToPreviousImage = () => {
     setCurrentImageIndex((prevIndex) => Math.max(prevIndex - 1, 0));
@@ -142,12 +141,10 @@ export const Home = () => {
           <div className={classes.img}>
             {allImages && allImages.map((data) => {
               if (data._id === currentUser._id) {
-                const imagePath = data.image.substring(4);
-                // console.log(imagePath);
                 return (
                   <img
                     className={classes.avatar}
-                    src={`http://localhost:4000/${imagePath}`}
+                    src={`http://localhost:4000/${data.image}`}
                     alt=""
                   />
                 );

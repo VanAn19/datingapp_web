@@ -33,7 +33,6 @@ export const Profile = () => {
       try {
         const res = await fetch(`http://localhost:4000/v1/user/find/${user._id}`);
         const data = await res.json();
-        data.image = data.image.substring(4);
         setUsers(data);
         setBio(data.bio);
       } catch (error) {
@@ -50,14 +49,13 @@ export const Profile = () => {
       const formData = new FormData();
       formData.append('bio', bio);
       formData.append('image', image);
-      console.log(image);
       const res = await axios.put(`http://localhost:4000/v1/user/${user._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'token': `Bearer ${token}`
         }
       });
-      const updatedUser = { ...users, image: image ? res.data.image.substring(4) : users.image};
+      const updatedUser = { ...users, image: image ? res.data.image : users.image };
       setUsers(updatedUser);
       document.getElementById('fileInput').value = null;
     } catch (err) {
